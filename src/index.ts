@@ -1,25 +1,25 @@
-import './helpers/logger'
+import './helpers/logger';
+import './db/db';
+import './sequelizeDbs/googleSQL';
 import express from 'express';
 import dotenv from 'dotenv';
-import cors from 'cors'
-import './db/db'
-import * as Const from './helpers/constants'
-import './sequelizeDbs/googleSQL'
+import cors from 'cors';
+import CashierRouter from './router/cashier';
 
 dotenv.config();
-const port = Const.PORT;
-
-// example of import from .js to .ts files
-// =================================
-import { example } from './controllers/user'
-console.log(example);
+const PORT = process.env.PORT || 3010;
 
 const app = express();
-app.use(cors())
-    
+app.use(cors());
+app.use(express.json());
+
+app.listen(PORT, async () => {
+  console.log(`Server running. Use our API on port: ${PORT}`);
+});
+
+app.use('/cashier', CashierRouter);
 app.get('/', (_, response) => {
   response.send('Hello world!');
 });
-app.listen(port, () => console.log(`Running on port ${port}`));
 
-export default app
+export default app;

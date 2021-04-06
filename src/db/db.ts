@@ -1,35 +1,31 @@
-import sqlite3 from 'sqlite3'
-import path from 'path'
+import sqlite3, { OPEN_CREATE } from 'sqlite3';
+import { createTableCashiers } from '../helpers/sqlQueries';
+import path from 'path';
 sqlite3.verbose();
 
-const db = new sqlite3.Database(path.resolve(__dirname, 'data_base.db'), e => {
-    if (e) {
-        console.log('error in creation', e.message)
+const dbPath = path.resolve(__dirname, 'data_base.db');
+
+const db = new sqlite3.Database(
+  dbPath,
+  sqlite3.OPEN_READWRITE | OPEN_CREATE,
+  err => {
+    if (err) {
+      console.log('error', err.message);
+      process.exit(1);
+    } else {
+      console.log('Connected to the SQlite database.');
+
+      db.run(createTableCashiers, err => {
+        if (err) console.log(err);
+      });
     }
-    console.log('Connected to the SQlite database.');
+  },
+);
+
+process.on('SIGINT', () => {
+  db.close();
+  console.log('Connection for db closed and app termination');
+  process.exit(1);
 });
 
-db.serialize(function() {
-//   db.run("CREATE TABLE IF NOT EXISTS lorem (info TEXT)");
-    
-//   const stmt = db.prepare("INSERT INTO lorem VALUES (?)");
-//   for (let i = 0; i < 10; i++) {
-//       stmt.run("Ipsum " + i);
-//   }
-//   stmt.finalize();
-
-//   db.each("SELECT rowid AS id, info FROM lorem", function(err, row) {
-//       console.log(row.id + ": " + row.info);
-//   });
-    
-    // db.
-});
-
-// db.close((err) => {
-//   if (err) {
-//     return console.error(err.message);
-//   }
-//   console.log('Close the database connection.');
-// });
-
-export default db
+export default db;

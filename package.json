@@ -2,6 +2,10 @@
   "name": "nodejs_test_task",
   "version": "1.0.0",
   "description": "test Task",
+  "type": "commonjs",
+  "engines": {
+    "node": "14.x"
+  },
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
@@ -28,9 +32,7 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-json-es": "^1.5.3",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "ts-node-dev": "^1.1.6",
-    "typescript": "^4.2.3"
+    "eslint-plugin-jsx-a11y": "^6.4.1"
   },
   "dependencies": {
     "@types/dotenv": "^8.2.0",
@@ -39,10 +41,13 @@
     "express": "^4.17.1",
     "log4js": "^6.3.0",
     "mysql2": "^2.2.5",
+    "nanoid": "^3.1.22",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.6.2",
     "sequelize-cli": "^6.2.0",
     "sequelize-typescript": "^2.1.0",
-    "sqlite3": "^5.0.2"
+    "sqlite3": "^5.0.2",
+    "ts-node-dev": "^1.1.6",
+    "typescript": "^4.2.3"
   }
 }
