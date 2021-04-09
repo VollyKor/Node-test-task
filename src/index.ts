@@ -4,6 +4,7 @@ import './sequelizeDbs/googleSQL';
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import db from '../src/db/db';
 import CashierRouter from './router/cashier';
 
 dotenv.config();
@@ -20,6 +21,10 @@ app.listen(PORT, async () => {
 app.use('/cashier', CashierRouter);
 app.get('/', (_, response) => {
   response.send('Hello world!');
+});
+
+(function methodName() {
+  db.run('INSERT INTO ');
 });
 
 export default app;

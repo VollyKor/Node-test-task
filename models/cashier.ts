@@ -1,4 +1,4 @@
-import { Model, DataType } from 'sequelize-typescript'
+import { Model, DataType } from 'sequelize-typescript';
 
 export default (sequelize, DataTypes: typeof DataType) => {
   class Cashier extends Model {

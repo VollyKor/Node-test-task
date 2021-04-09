@@ -26,3 +26,5 @@ export const changeCashier = `UPDATE cashiers SET \
   WHERE cashier_id = ?`;
 
 export const deleteCashier = '';
+
+('');
